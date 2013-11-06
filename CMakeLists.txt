@@ -61,11 +61,11 @@ QT4_WRAP_CPP(MOCS ${lxqt-lightdm-greeter_MOCS})
 
 if(CMAKE_BUILD_TYPE MATCHES [Dd]ebug)
     configure_file(test/test.sh test/test.sh)
-    configure_file(test/lxqt-lightdm-greeter.desktop test/lxqt-lightdm-greeter.desktop)
+    configure_file(test/lightdm-lxqt-greeter.desktop test/lightdm-lxqt-greeter.desktop)
     configure_file(test/lightdm.conf test/lightdm.conf)
 endif()
 
-#link_directories( ${LIGHTDM_QT_LIBRARY_DIRS} )
+link_directories( ${LIGHTDM_QT_LIBRARY_DIRS} )
 
 add_executable ( lxqt-lightdm-greeter
                  ${lxqt-lightdm-greeter_SRCS}
@@ -75,14 +75,7 @@ add_executable ( lxqt-lightdm-greeter
                  ${RSCS}
 )
 
-target_link_libraries ( lxqt-lightdm-greeter  
-                        lxqt 
-                        qtxdg 
-                        ${QT_QTCORE_LIBRARY} 
-                        ${QT_QTGUI_LIBRARY} 
-                        ${QT_QTDBUS_LIBRARY} 
-                        ${QT_QTNETWORK_LIBRARY} 
-                        ${LIGHTDM_QT_LIBRARIES} )
+target_link_libraries ( lxqt-lightdm-greeter  lxqt qtxdg ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTDBUS_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${LIGHTDM_QT_LIBRARIES} )
 
 file(GLOB DESKTOP_FILES resources/*.desktop)
 file(GLOB CONFIG_FILES resources/*.conf)
